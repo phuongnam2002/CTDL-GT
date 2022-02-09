@@ -1,0 +1,80 @@
+//Made By Phuong Nam PROPTIT <3//
+#pragma GCC Optimize("O3")
+#include<bits/stdc++.h>
+#include<string>
+#include<vector>
+#define alphaa "abcdefghijklmnopqrstuvwxyz"
+#define ALPHAA "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+#define f(i,a,b) for(int i=a;i<=b;i++)
+#define f1(i,n) for(int i=1;i<=n;i++)
+#define f0(i,n) for(int i=0;i<n;i++)
+#define ff(i,b,a) for(int i=b;i>=a;i--)
+#define el cout<<'\n'
+#define fi first
+#define se second
+#define pb push_back
+#define pk pop_back
+#define pii pair<int,int>
+#define pll pair<ll,ll>
+using namespace std;
+typedef long long ll;
+const int N=1e7+3;
+const int MOD=1e9+7;
+template<class X,class Y>
+    void minimize(X &x,const Y &y) {
+        if (x>y) x=y;
+    }
+template<class X,class Y>
+    void maximize(X &x,const Y &y) {
+        if (x<y) x=y;
+    }
+template<class T>
+    T Abs(const T &x) {
+        return (x<0?-x:x);
+    }
+string add(string a,string b)
+{
+   while(a.size()<b.size()) a='0'+a;
+   while(b.size()<a.size()) b='0'+b;
+   int nho=0;
+   string kq="";
+   for(int i=b.size()-1;i>=0;i--)
+   {
+      nho=nho+(a[i]-'0')+(b[i]-'0');
+      char k=nho%10+'0';
+      kq=k+kq;
+      nho/=10;
+   }
+   if(nho) kq='1'+kq;
+   return kq;
+}
+int main()
+{
+  ios::sync_with_stdio(false);cin.tie(0);cout.tie(0);
+  int t=1;
+  //cin>>t;
+  while(t--)
+  {
+     string s,t;
+     cin>>s>>t;
+     f0(i,s.size())
+     {
+         if(s[i]=='6') s[i]='5';
+     }
+     f0(i,t.size())
+     {
+         if(t[i]=='6') t[i]='5';
+     }
+     cout<<add(s,t)<<' ';
+     f0(i,s.size())
+     {
+         if(s[i]=='5') s[i]='6';
+     }
+     f0(i,t.size())
+     {
+         if(t[i]=='5') t[i]='6';
+     }
+     cout<<add(s,t);el;
+  }
+}
+//-----YEU CODE HON CRUSH-----//
