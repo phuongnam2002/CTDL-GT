@@ -1,0 +1,69 @@
+//Made By Phuong Nam PROPTIT <3//
+#pragma GCC Optimize("O3")
+#include<bits/stdc++.h>
+#include<string>
+#include<vector>
+#define alphaa "abcdefghijklmnopqrstuvwxyz"
+#define ALPHAA "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+#define f(i,a,b) for(int i=a;i<=b;i++)
+#define f1(i,n) for(int i=1;i<=n;i++)
+#define f0(i,n) for(int i=0;i<n;i++)
+#define ff(i,b,a) for(int i=b;i>=a;i--)
+#define el cout<<'\n'
+#define fi first
+#define se second
+#define pb push_back
+#define pk pop_back
+#define vi vector<int>
+#define vl vector<ll>
+#define pii pair<int,int>
+#define pll pair<ll,ll>
+#define all(v) sort(v.begin(),v.end())
+using namespace std;
+typedef long long ll;
+const int N=1e6+3;
+const int MOD=1e9+7;
+template<class X,class Y>
+    void minimize(X &x,const Y &y) {
+        if (x>y) x=y;
+    }
+template<class X,class Y>
+    void maximize(X &x,const Y &y) {
+        if (x<y) x=y;
+    }
+template<class T>
+    T Abs(const T &x) {
+        return (x<0?-x:x);
+    }
+int n,m,a[100005],b[100005];
+map<int,int>d;
+void xuly()
+{
+   d.clear();
+   cin>>n>>m;
+   f1(i,n) cin>>a[i];
+   f1(i,m) cin>>b[i],d[b[i]]++;
+   sort(b+1,b+m+1);
+   ll ans=0;
+   f1(i,n)
+   {
+       if(!a[i]) continue;
+       if(a[i]==1)
+       {
+           ans+=d[0];
+           continue;
+       }
+       ans+=(m-(upper_bound(b+1,b+m+1,a[i])-b)+1)+d[0]+d[1];
+       if(a[i]==3) ans+=d[2];
+       if(a[i]==2) ans-=(d[3]+d[4]);
+   }
+   cout<<ans;el;
+}
+int main()
+{
+  ios::sync_with_stdio(false);cin.tie(0);cout.tie(0);
+  int t;
+  cin>>t;
+  while(t--) xuly();
+}
+//-----YEU CODE HON CRUSH-----//
