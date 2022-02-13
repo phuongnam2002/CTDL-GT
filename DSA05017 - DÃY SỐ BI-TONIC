@@ -1,0 +1,71 @@
+//Made By Phuong Nam PROPTIT <3//
+#pragma GCC Optimize("O3")
+#include<bits/stdc++.h>
+#include<string>
+#include<vector>
+#define alphaa "abcdefghijklmnopqrstuvwxyz"
+#define ALPHAA "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+#define f(i,a,b) for(int i=a;i<=b;i++)
+#define f1(i,n) for(int i=1;i<=n;i++)
+#define f0(i,n) for(int i=0;i<n;i++)
+#define ff(i,b,a) for(int i=b;i>=a;i--)
+#define el cout<<'\n'
+#define fi first
+#define se second
+#define pb push_back
+#define pk pop_back
+#define vi vector<int>
+#define vl vector<ll>
+#define pii pair<int,int>
+#define pll pair<ll,ll>
+using namespace std;
+typedef long long ll;
+const int N=1e6+3;
+const int MOD=1e9+7;
+template<class X,class Y>
+    void minimize(X &x,const Y &y) {
+        if (x>y) x=y;
+    }
+template<class X,class Y>
+    void maximize(X &x,const Y &y) {
+        if (x<y) x=y;
+    }
+template<class T>
+    T Abs(const T &x) {
+        return (x<0?-x:x);
+    }
+int n,m,a[105],f[105],g[105];
+void xuly()
+{
+   cin>>n;
+   f1(i,n) cin>>a[i];
+   f1(i,n)
+   {
+       f[i]=a[i];
+       f(j,1,i-1)
+       {
+           if(a[j]<a[i]) f[i]=max(f[i],f[j]+a[i]);
+       }
+   }
+   reverse(a+1,a+n+1);
+   f1(i,n)
+   {
+       g[i]=a[i];
+       f1(j,i-1)
+       {
+           if(a[j]<a[i]) g[i]=max(g[i],g[j]+a[i]);
+       }
+   }
+   int ans=0;
+   f1(i,n) ans=max(ans,g[i]+f[n-i+1]-a[i]);
+   cout<<ans;el;
+}
+int main()
+{
+  ios::sync_with_stdio(false);cin.tie(0);cout.tie(0);
+  int t=1;
+  cin>>t;
+  while(t--) xuly();
+  return 0;
+}
+//-----YEU CODE HON CRUSH-----//
