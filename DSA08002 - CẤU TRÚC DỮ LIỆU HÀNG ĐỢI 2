@@ -1,0 +1,43 @@
+#include<bits/stdc++.h>
+#define F first
+#define S second
+#define mp make_pair
+#define FORT(i,a,b) for(int i=a;i<b;i++)
+#define FORD(i,a,b) for(int i=(int)a-1;i>=b;i--)
+
+using namespace std;
+queue<int> q;
+
+void solve()
+{
+	int n;
+	cin >> n;
+	FORT(i, 0, n)
+	{
+		string s;
+		cin >> s;
+		if (s == "PUSH")
+		{
+			int so;
+			cin >> so;
+			q.push(so);
+		}
+		else
+			if (s == "POP")
+			{
+				if (!q.empty()) q.pop();
+			}
+			else
+			{
+				if(q.empty()) cout<<"NONE"<<endl;
+				else
+					cout << q.front()<<endl;
+			}
+	}
+}
+int main()
+{
+	int t=1;
+	//cin>>t;
+	while (t--) solve();
+}
