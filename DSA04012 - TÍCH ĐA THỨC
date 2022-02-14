@@ -1,0 +1,69 @@
+#include<bits/stdc++.h>
+#include<string>
+#include<vector>
+#define endl '\n'
+#define alphaa "abcdefghijklmnopqrstuvwxyz"
+#define ALPHAA "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+#define f(i,a,b) for(int i=a;i<=b;i++)
+#define f1(i,n) for(int i=1;i<=n;i++)
+#define f0(i,n) for(int i=0;i<n;i++)
+#define sp(x) cout<<x<<" ";
+#define en(x) cout<<x<<endl;
+using namespace std;
+typedef long long ll;
+const int N=1e6+3;
+const int MOD=1e9+7;
+struct nam
+{
+    int hs,mu;
+};
+int main()
+
+{
+  ios::sync_with_stdio(false);
+  cin.tie(0);
+  int t;
+  cin>>t;
+  while(t--)
+  {
+      int n,m;
+      cin>>n>>m;
+      vector<vector<nam>>res;
+      nam a[105],b[105];
+      f0(i,n)
+      {
+          cin>>a[i].hs;
+          a[i].mu=i;
+      }
+      f0(i,m)
+      {
+          cin>>b[i].hs;
+          b[i].mu=i;
+      }
+      f0(i,n)
+      {
+          vector<nam>v;
+          f0(j,m)
+          {
+            v.push_back({a[i].hs*b[j].hs,a[i].mu+b[j].mu});
+          }
+          res.push_back(v);
+      }
+      int mu=0;
+      while(mu<m+n-1)
+      {
+          int hs=0;
+          f0(i,res.size())
+          {
+              f0(j,res[i].size())
+              {
+                  if(res[i][j].mu==mu) hs+=res[i][j].hs;
+              }
+          }
+          cout<<hs<<" ";
+          mu++;
+      }
+      cout<<endl;
+  }
+  return 0;
+}
