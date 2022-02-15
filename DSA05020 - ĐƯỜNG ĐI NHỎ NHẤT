@@ -1,0 +1,44 @@
+#include<bits/stdc++.h>
+#include<string>
+#include<vector>
+#define endl '\n'
+#define alphaa "abcdefghijklmnopqrstuvwxyz"
+#define ALPHAA "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+#define f(i,a,b) for(int i=a;i<=b;i++)
+#define f1(i,n) for(int i=1;i<=n;i++)
+#define f0(i,n) for(int i=0;i<n;i++)
+#define sp(x) cout<<x<<" ";
+#define en(x) cout<<x<<endl;
+using namespace std;
+typedef long long ll;
+const int N=1e6+3;
+const int MOD=1e9+7;
+ll a[1005][1005],f[1005][1005];
+void xuly()
+{
+  ll n,m;
+  cin>>n>>m;
+  f1(i,n) f1(j,m) cin>>a[i][j];
+  memset(f,0,sizeof(f));
+  f1(i,n)
+  {
+      f1(j,m)
+      {
+          if(i==1&&j==1) f[i][j]=a[i][j];
+          else if(i==1&&j!=1) f[i][j]=a[i][j]+f[i][j-1];//chi co o ben trai di sang duoc vi i=1
+          else if(j==1&&i!=1) f[i][j]=a[i][j]+f[i-1][j];
+          else f[i][j]=a[i][j]+min(f[i-1][j],min(f[i-1][j-1],f[i][j-1]));
+      }
+  }
+  cout<<f[n][m]<<endl;
+}
+int main()
+{
+  ios::sync_with_stdio(false);
+  cin.tie(0);
+  cout.tie(0);
+  int t;
+  cin>>t;
+  while(t--) xuly();
+  return 0;
+}
