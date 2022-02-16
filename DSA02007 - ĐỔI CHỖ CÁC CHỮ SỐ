@@ -1,0 +1,46 @@
+#include<bits/stdc++.h>
+#include<string>
+#include<vector>
+#define endl '\n'
+#define f(i,a,b) for(int i=a;i<=b;i++)
+#define f1(i,n) for(int i=1;i<=n;i++)
+#define f0(i,n) for(int i=0;i<n;i++)
+#define sp(x) cout<<x<<" ";
+#define en(x) cout<<x<<endl;
+using namespace std;
+typedef long long ll;
+const int N=1e6+3;
+const int MOD=1e9+7;
+void quaylui(string s,int k,string &res,int pos)
+{
+    if(k==0) return;
+    char c=s[pos];
+    for(int j=pos+1;j<s.size();j++) c=max(c,s[j]);
+    if(c!=s[pos]) k--;
+    for(int i=pos;i<s.size();i++)
+    {
+        if(s[i]==c)
+        {
+            swap(s[i],s[pos]);
+            if(s.compare(res)>0) res=s;
+            quaylui(s,k,res,pos+1);
+            swap(s[i],s[pos]);
+        }
+    }
+}
+void xuly()
+{
+   string s;
+   int k;
+   cin>>k>>s;
+   string res=s;
+   quaylui(s,k,res,0);
+   cout<<res<<endl;
+}
+main()
+{
+    int t;
+    cin>>t;
+    while(t--) xuly();
+    return 0;
+}
