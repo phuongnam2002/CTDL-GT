@@ -1,0 +1,53 @@
+#include<bits/stdc++.h>
+#include<string>
+#include<vector>
+#define endl '\n'
+#define alphaa "abcdefghijklmnopqrstuvwxyz"
+#define ALPHAA "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+#define f(i,a,b) for(int i=a;i<=b;i++)
+#define f1(i,n) for(int i=1;i<=n;i++)
+#define f0(i,n) for(int i=0;i<n;i++)
+#define sp(x) cout<<x<<" ";
+#define en(x) cout<<x<<endl;
+using namespace std;
+typedef long long ll;
+const int N=1e6+3;
+const int MOD=1e9+7;
+int n,s,k;
+int a[25][15][160];
+void ktao()
+{
+    memset(a,-1,sizeof(a));
+}
+int xuly(int n,int k,int s)
+{
+    if(s<=0||k<=0) return 0;
+    //cout<<a[n][k][s]<<endl;
+    if(k==1)
+    {
+        if(s<=n) a[n][k][s]=1;
+        else a[n][k][s]=0;
+        return a[n][k][s];
+    }
+    if(a[n][k][s]!=-1) return a[n][k][s];
+    int tong=0;
+    for(int i=n;i>=1;i--)
+    {
+      tong+=xuly(i-1,k-1,s-i);
+    }
+    a[n][k][s]=tong;
+    return a[n][k][s];
+}
+int main()
+{
+  ios::sync_with_stdio(false);
+  cin.tie(0);
+  ktao();
+  while(1)
+  {
+     cin>>n>>k>>s;
+     if(n==0&&k==0&&s==0) break;
+     cout<<xuly(n,k,s)<<endl;
+  }
+  return 0;
+}
