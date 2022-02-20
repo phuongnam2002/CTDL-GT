@@ -1,0 +1,41 @@
+#include<bits/stdc++.h>
+#define FORT(i,a,b) for(int i=a;i<b;i++)
+#define FORD(i,a,b) for(int i=a-1;i>=b;i--)
+#define mp make_pair
+#define F first
+#define S second
+
+using namespace std;
+int tinh(string s)
+{
+    stack<int> st;
+    for(int i=0;i<s.length();i++)
+    {
+        if (s[i]>='0'&&s[i]<='9') st.push(s[i]-'0');
+        else
+        {
+            int tmp1=st.top();
+            st.pop();
+            int tmp2=st.top();
+            st.pop();
+            if (s[i]=='+') st.push(tmp2+tmp1);
+            if (s[i]=='-') st.push(tmp2-tmp1);
+            if (s[i]=='*') st.push(tmp2*tmp1);
+            if (s[i]=='/') st.push(tmp2/tmp1);
+        }
+    }
+    return st.top();
+}
+void solve()
+{
+    string s;
+    cin>>s;
+    cout<<tinh(s)<<endl;
+}
+int main()
+{
+    int T=1;
+    cin>>T;
+    FORT(t,0,T) solve();
+    return 0;
+}
