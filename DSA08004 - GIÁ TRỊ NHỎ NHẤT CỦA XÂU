@@ -1,0 +1,60 @@
+#include<bits/stdc++.h>
+#include<string>
+#include<vector>
+#define endl '\n'
+#define alphaa "abcdefghijklmnopqrstuvwxyz"
+#define ALPHAA "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+#define f(i,a,b) for(int i=a;i<=b;i++)
+#define f1(i,n) for(int i=1;i<=n;i++)
+#define f0(i,n) for(int i=0;i<n;i++)
+#define ff(i,b,a) for(int i=b;i>=a;i--)
+#define sp(x) cout<<x<<" "
+#define en(x) cout<<x<<endl
+#define el cout<<'\n'
+#define fi first
+#define se second
+#define pb push_back
+#define pk pop_back
+#define pii pair<int,int>
+#define pll pair<ll,ll>
+using namespace std;
+typedef long long ll;
+const int N=1e6+3;
+const int MOD=1e9+7;
+void xuly()
+{
+    ll k;string s;
+    cin>>k>>s;
+    if(k>=s.size()) {cout<<0;el;return;}
+    priority_queue<ll, vector<ll> >a;
+    ll f[300]={0};
+    f0(i,s.size()) f[s[i]]++;
+    f0(i,300)
+    {
+        if(f[i]>=1) a.push(f[i]);
+    }
+    while(a.size()>0&&k>0)
+    {
+        ll x=a.top();
+        a.pop();
+        x--;
+        k--;
+        a.push(x);
+    }
+    ll ans=0;
+    while(a.size()>0)
+    {
+        ans+=a.top()*a.top();
+        a.pop();
+    }
+    cout<<ans;el;
+}
+int main()
+{
+  ios::sync_with_stdio(false);cin.tie(0);cout.tie(0);
+  int t;
+  cin>>t;
+  while(t--) xuly();
+  return 0;
+}
+//-----YEU CODE HON CRUSH-----//
