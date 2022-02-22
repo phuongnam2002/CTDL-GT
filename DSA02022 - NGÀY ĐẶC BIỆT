@@ -1,0 +1,29 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define faster() ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
+#define vt vector <int>
+#define vtl vector <ll>
+#define vts vector <string>
+const int MOD = 1e9 + 7;
+
+vts D = { "02", "20", "22" };
+vts Y = { "000", "002", "020", "200", "022", "202", "220", "222" };
+vts ans;
+
+void solution() {
+    for (auto i : D) {
+        for (auto j : Y) {
+            string tmp = i + "/02/2" + j;
+            ans.push_back(tmp);
+        }
+    }
+    sort(ans.begin(), ans.end());
+    for (auto i : ans) cout << i << endl;
+}
+
+int main() {
+    faster();
+    solution();
+    return 0;
+}
