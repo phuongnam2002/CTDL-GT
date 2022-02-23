@@ -1,0 +1,56 @@
+//Made By Phuong Nam PROPTIT <3//
+#pragma GCC Optimize("O3")
+#include<bits/stdc++.h>
+#include<string>
+#include<vector>
+#define endl '\n'
+#define alphaa "abcdefghijklmnopqrstuvwxyz"
+#define ALPHAA "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+#define f(i,a,b) for(int i=a;i<=b;i++)
+#define f1(i,n) for(int i=1;i<=n;i++)
+#define f0(i,n) for(int i=0;i<n;i++)
+#define ff(i,b,a) for(int i=b;i>=a;i--)
+#define sp(x) cout<<x<<" "
+#define en(x) cout<<x<<endl
+#define el cout<<'\n'
+#define fi first
+#define se second
+#define pb push_back
+#define pk pop_back
+#define pii pair<int,int>
+#define pll pair<ll,ll>
+using namespace std;
+typedef long long ll;
+const int N=1e6+3;
+const int MOD=1e9+7;
+ll f[105],a[105];
+//f[i] la so cach tao ra so thoa man use cac cso tu 1 den i
+int main()
+{
+  ios::sync_with_stdio(false);cin.tie(0);cout.tie(0);
+  f1(i,10) a[i]=1;
+  f[1]=10;
+  f(i,2,100)
+  {
+      f1(j,9)
+      {
+          ll s=0;
+          f(k,j,9) s+=a[k];
+          a[j]=s;
+          f[i]=(f[i]+s)%MOD;
+          //cout<<a[j]<<' ';
+      }
+      //cout<<'\n';
+  }
+  f(i,2,100) f[i]=(f[i]+f[i-1])%MOD;
+  int t;
+  cin>>t;
+  while(t--)
+  {
+      int n;
+      cin>>n;
+      cout<<f[n]<<'\n';
+  }
+  return 0;
+}
+//-----YEU CODE HON CRUSH-----//
