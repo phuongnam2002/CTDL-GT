@@ -1,0 +1,95 @@
+include<bits/stdc++.h>
+#include<string>
+#include<vector>
+#define alphaa "abcdefghijklmnopqrstuvwxyz"
+#define ALPHAA "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+#define f(i,a,b) for(int i=a;i<=b;i++)
+#define f1(i,n) for(int i=1;i<=n;i++)
+#define f0(i,n) for(int i=0;i<n;i++)
+#define ff(i,b,a) for(int i=b;i>=a;i--)
+#define el cout<<'\n'
+#define fi first
+#define se second
+#define eb emplace_back
+#define pk pop_back
+#define vi vector<int>
+#define vl vector<ll>
+#define pii pair<int,int>
+#define pll pair<ll,ll>
+#define all(s) s.begin(),s.end()
+using namespace std;
+typedef long long ll;
+const int N=1e6+3;
+const int MOD=1e9+7;
+int toNum(string s)
+{
+    int res=0;
+    for(int i=0;i<s.length();i++)
+    {
+        res=res*10+(s[i]-'0');
+    }
+    return res;
+}
+string mul (string s, int hs)
+{
+    string res=s;
+    for(int i=1;i<hs;i++)
+        res+=s;
+    return res;
+}
+bool Var (char c)
+{
+    return (c>='a'&&c<='z');
+}
+bool Num (char c)
+{
+    return (c>='0'&&c<='9');
+}
+void xuly()
+{
+    string s;
+    cin>>s;
+    stack<char> st;
+    st.push('#');
+    for(int i=0;i<s.length();i++)
+    {
+        if (Var(s[i])||s[i]=='['||Num(s[i]))
+        {
+            st.push(s[i]);
+            continue;
+        }
+        if (s[i]==']')
+        {
+            string heso="";
+            string tmp="";
+            while (!st.empty() && st.top()!='[')
+            {
+                tmp=st.top()+tmp;
+                st.pop();
+            }
+            st.pop();
+            while (Num(st.top()))
+            {
+                heso=st.top()+heso;
+                st.pop();
+            }
+            tmp=mul(tmp,toNum(heso));
+            for(int j=0;j<tmp.length();j++) st.push(tmp[j]);
+        }
+    }
+    string res="";
+    while (st.top()!='#')
+    {
+        res=st.top()+res;
+        st.pop();
+    }
+    cout<<res<<endl;
+}
+int main()
+{
+  ios::sync_with_stdio(false);cin.tie(0);cout.tie(0);
+  int t=1;
+  cin>>t;
+  while(t--) xuly();
+  return 0;
+}
