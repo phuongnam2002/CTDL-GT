@@ -1,0 +1,80 @@
+//Made By Phuong Nam PROPTIT <3//
+#pragma GCC Optimize("O3")
+#include<bits/stdc++.h>
+#include<string>
+#include<vector>
+#define endl '\n'
+#define alphaa "abcdefghijklmnopqrstuvwxyz"
+#define ALPHAA "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+#define f(i,a,b) for(int i=a;i<=b;i++)
+#define f1(i,n) for(int i=1;i<=n;i++)
+#define f0(i,n) for(int i=0;i<n;i++)
+#define ff(i,b,a) for(int i=b;i>=a;i--)
+#define sp(x) cout<<x<<" "
+#define en(x) cout<<x<<endl
+#define el cout<<'\n'
+#define fi first
+#define se second
+#define pb push_back
+#define pk pop_back
+#define pii pair<int,int>
+#define pll pair<ll,ll>
+using namespace std;
+typedef long long ll;
+const int N=10005;
+const int MOD=1e9+7;
+int c[10005],dem[10005],a[4];
+void sang()
+{
+    c[1]=c[0]=1;
+    for(int i=2;i<=sqrt(N);i++)
+    {
+        if(!c[i])
+        {
+            for(int j=i*i;j<=N;j+=i) c[j]=1;
+        }
+    }
+}
+void nutoar(int a[],int s)
+{
+    ff(i,3,0) a[i]=s%10,s/=10;
+}
+void xuly()
+{
+    int n,m;
+    cin>>n>>m;
+    memset(dem,-1,sizeof(dem));
+    dem[n]=0;
+    queue<int>q;
+    q.push(n);
+    while(q.size())
+    {
+        n=q.front();
+        q.pop();
+        f0(i,4)
+        {
+            nutoar(a,n);
+            f0(j,10)
+            {
+                a[i]=j;
+                int t=a[0]*1000+a[1]*100+a[2]*10+a[3];
+                if(t>1000&&dem[t]==-1&&!c[t])
+                {
+                    q.push(t);
+                    dem[t]=dem[n]+1;
+                }
+            }
+        }
+    }
+    cout<<dem[m]<<'\n';
+}
+int main()
+{
+  ios::sync_with_stdio(false);cin.tie(0);cout.tie(0);
+  sang();
+  int t;
+  cin>>t;
+  while(t--) xuly();
+  return 0;
+}
+//-----YEU CODE HON CRUSH-----//
