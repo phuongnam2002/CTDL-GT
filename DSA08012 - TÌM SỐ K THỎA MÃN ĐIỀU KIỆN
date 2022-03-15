@@ -1,0 +1,72 @@
+//Made By Phuong Nam PROPTIT <3//
+#pragma GCC Optimize("O3")
+#include<bits/stdc++.h>
+#define alphaa "abcdefghijklmnopqrstuvwxyz"
+#define ALPHAA "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+#define f(i,a,b) for(int i=a;i<=b;i++)
+#define f1(i,n) for(int i=1;i<=n;i++)
+#define f0(i,n) for(int i=0;i<n;i++)
+#define ff(i,b,a) for(int i=b;i>=a;i--)
+#define el cout<<'\n'
+#define fi first
+#define se second
+#define eb emplace_back
+#define pk pop_back
+#define vi vector<int>
+#define vl vector<ll>
+#define pii pair<int,int>
+#define pll pair<ll,ll>
+#define all(s) s.begin(),s.end()
+using namespace std;
+typedef long long ll;
+const int N=1e6+3;
+const int MOD=1e9+7;
+template<class X,class Y>
+    void minimize(X &x,const Y &y) {
+        if (x>y) x=y;
+    }
+template<class X,class Y>
+    void maximize(X &x,const Y &y) {
+        if (x<y) x=y;
+    }
+template<class T>
+    T Abs(const T &x) {
+        return (x<0?-x:x);
+    }
+vi res;
+bool kt(int n)
+{
+    string s=to_string(n);
+    n=s.size();
+    string t=s;
+    sort(all(t));
+    t=' '+t;
+    f1(i,n)
+    {
+        if(t[i]==t[i-1]) return 0;
+        if(t[i]>'5') return 0;
+    }
+    return 1;
+}
+void xuly()
+{
+    int l,r;
+    cin>>l>>r;
+    if(l>res[res.size()-1]||r<res[0]) return cout<<0<<'\n',void();
+    int p1=lower_bound(all(res),l)-res.begin();
+    int p2=upper_bound(all(res),r)-res.begin();
+    cout<<p2-p1;el;
+}
+int main()
+{
+  ios::sync_with_stdio(false);cin.tie(0);cout.tie(0);
+  f0(i,100005)
+  {
+      if(kt(i)) res.eb(i);
+  }
+  int t=1;
+  cin>>t;
+  while(t--) xuly();
+  return 0;
+}
+//-----YEU CODE HON CRUSH-----//
