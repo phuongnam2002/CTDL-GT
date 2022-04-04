@@ -1,0 +1,65 @@
+//Made By Phuong Nam PROPTIT <3//
+#pragma GCC Optimize("O3")
+#include<bits/stdc++.h>
+#define alphaa "abcdefghijklmnopqrstuvwxyz"
+#define ALPHAA "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+#define f(i,a,b) for(int i=a;i<=b;i++)
+#define f1(i,n) for(int i=1;i<=n;i++)
+#define f0(i,n) for(int i=0;i<n;i++)
+#define ff(i,b,a) for(int i=b;i>=a;i--)
+#define el cout<<'\n'
+#define fi first
+#define se second
+#define pb push_back
+#define pk pop_back
+#define vi vector<int>
+#define vl vector<ll>
+#define pii pair<int,int>
+#define pll pair<ll,ll>
+#define all(s) s.begin(),s.end()
+using namespace std;
+typedef long long ll;
+const int N=1e6+3;
+const int MOD=1e9+7;
+int n,m,a[505][505];
+pii b[4]={{-1,0},{0,-1},{1,0},{0,1}};
+map<pii,bool>q;
+struct node
+{
+    bool operator()(pair<pii,int>a,pair<pii,int>b)
+    {
+         return a.se>b.se;
+    }
+};
+void xuly()
+{
+    q.clear();
+    cin>>n>>m;
+    f1(i,n) f1(j,m) cin>>a[i][j];
+    priority_queue<pair<pii,int>,vector<pair<pii,int>>,node>s;
+    s.push({{1,1},a[1][1]});
+    while(s.size())
+    {
+        pair<pii,int>u=s.top();
+        s.pop();
+        if(u.fi.fi==n&&u.fi.se==m) return cout<<u.se<<'\n',void();
+        q[{u.fi.fi,u.fi.se}]=1;
+        f0(i,4)
+        {
+            pii v=b[i];
+            v.fi+=u.fi.fi;
+            v.se+=u.fi.se;
+            if(v.fi>=1&&v.se>=1&&v.fi<=n&&v.se<=m&&!q[v])
+                 s.push({{v.fi,v.se},u.se+a[v.fi][v.se]});
+        }
+    }
+}
+int main()
+{
+  ios::sync_with_stdio(false);cin.tie(0);cout.tie(0);
+  int t=1;
+  cin>>t;
+  while(t--) xuly();
+  return 0;
+}
+//-----YEU CODE HON CRUSH-----//
