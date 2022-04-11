@@ -1,0 +1,72 @@
+//Made By Phuong Nam PROPTIT <3//
+#pragma GCC Optimize("O3")
+#include<bits/stdc++.h>
+#define alphaa "abcdefghijklmnopqrstuvwxyz"
+#define ALPHAA "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+#define f(i,a,b) for(int i=a;i<=b;i++)
+#define f1(i,n) for(int i=1;i<=n;i++)
+#define f0(i,n) for(int i=0;i<n;i++)
+#define ff(i,b,a) for(int i=b;i>=a;i--)
+#define el cout<<'\n'
+#define fi first
+#define se second
+#define pb push_back
+#define pk pop_back
+#define vi vector<int>
+#define vl vector<ll>
+#define pii pair<int,int>
+#define pll pair<ll,ll>
+#define all(s) s.begin(),s.end()
+using namespace std;
+typedef long long ll;
+const int N=1e5+3;
+const int MOD=1e9+7;
+int n;
+pii a;
+set<pii>s[N];
+bool ss(const pii &a,const pii &b)
+{
+    return((a.fi<b.fi)&&(a.se<b.se));
+}
+bool kt(set<pii>&s)
+{
+    for(set<pii>::iterator i=s.begin();i!=s.end();++i)
+    {
+        if(ss(*i,a)) return 1;
+        else if(i->fi>=a.fi) break;
+    }
+    return 0;
+}
+int bina(int l,int r)
+{
+    while(l<r)
+    {
+        int m=(l+r)/2;
+        if(kt(s[m])) l=m+1;
+        else r=m;
+    }
+    return l;
+}
+int main()
+{
+  ios::sync_with_stdio(false);cin.tie(0);cout.tie(0);
+  cin>>n;
+  f0(i,n)
+  {
+      cin>>a.fi>>a.se;
+      int pos=bina(0,n);
+      if(pos<n)
+      {
+          set<pii>::iterator it=++s[pos].insert(a).fi;
+          while(it!=s[pos].end())
+          {
+            if(ss(a,*it)) s[pos].erase(it++);
+            else it++;
+          }
+      }
+  }
+  int ans=0;
+  while(ans<n&&s[ans].size()) ans++;
+  cout<<ans;
+}
+//-----YEU CODE HON CRUSH-----//
