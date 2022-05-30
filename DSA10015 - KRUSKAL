@@ -1,0 +1,88 @@
+//Made By Phuong Nam PROPTIT <3//
+#pragma GCC Optimize("O3")
+#include<bits/stdc++.h>
+#define alphaa "abcdefghijklmnopqrstuvwxyz"
+#define ALPHAA "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+#define f(i,a,b) for(int i=a;i<=b;i++)
+#define f1(i,n) for(int i=1;i<=n;i++)
+#define f0(i,n) for(int i=0;i<n;i++)
+#define ff(i,b,a) for(int i=b;i>=a;i--)
+#define el cout<<'\n'
+#define fi first
+#define se second
+#define pb push_back
+#define pk pop_back
+#define vi vector<int>
+#define vl vector<ll>
+#define pii pair<int,int>
+#define pll pair<ll,ll>
+#define all(s) s.begin(),s.end()
+using namespace std;
+typedef long long ll;
+const int N=1e6+3;
+const int MOD=1e9+7;
+int n,m,f[1005],trace[1005];
+struct node
+{
+    int u,v,w;
+};
+vector<node>a;
+bool ss(node a,node b)
+{
+    if(a.w==b.w)
+    {
+        if(a.u==b.u) return a.v<b.v;
+        return a.u<b.u;
+    }
+    return a.w<b.w;
+}
+int di(int u)
+{
+    if(u==trace[u]) return u;
+    return trace[u]=di(trace[u]);
+}
+void root(int u,int v)
+{
+    int rootu=di(u);
+    int rootv=di(v);
+    if(rootu!=rootv)
+    {
+        if(f[rootu]<f[rootv]) swap(rootu,rootv);
+        trace[rootv]=rootu;
+        f[rootu]+=rootv;
+    }
+}
+void xuly()
+{
+    memset(f,0,sizeof(f));
+    cin>>n>>m;
+    a.clear();
+    f1(i,n) trace[i]=i;
+    f1(i,m)
+    {
+        int u,v,w;
+        cin>>u>>v>>w;
+        a.push_back({min(u,v),max(u,v),w});
+    }
+    sort(all(a),ss);
+    ll s=0;
+    vector<pii>q;
+    f0(i,a.size())
+    {
+        int u=a[i].u,v=a[i].v;
+        if(di(u)==di(v)) continue;
+        s+=a[i].w;
+        root(u,v);
+    }
+    cout<<s;el;
+    //for(auto i:q) cout<<i.fi<<' '<<i.se<<'\n';
+}
+int main()
+{
+  ios::sync_with_stdio(false);cin.tie(0);cout.tie(0);
+  int t=1;
+  cin>>t;
+  while(t--) xuly();
+  return 0;
+}
+//-----YEU CODE HON CRUSH-----//
