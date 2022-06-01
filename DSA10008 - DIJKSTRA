@@ -1,0 +1,72 @@
+//Made By Phuong Nam PROPTIT <3//
+#pragma GCC Optimize("O3")
+#include<bits/stdc++.h>
+#define alphaa "abcdefghijklmnopqrstuvwxyz"
+#define ALPHAA "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+#define f(i,a,b) for(int i=a;i<=b;i++)
+#define f1(i,n) for(int i=1;i<=n;i++)
+#define f0(i,n) for(int i=0;i<n;i++)
+#define ff(i,b,a) for(int i=b;i>=a;i--)
+#define el cout<<'\n'
+#define fi first
+#define se second
+#define pb push_back
+#define pk pop_back
+#define vi vector<int>
+#define vl vector<ll>
+#define pii pair<int,int>
+#define pll pair<ll,ll>
+#define all(s) s.begin(),s.end()
+using namespace std;
+typedef long long ll;
+const int N=1e6+3;
+const int MOD=1e9+7;
+int n,m,s,f[1005];
+vector<pll> a[1005];
+ll d[1005],w[1005][1005];
+void xuly()
+{
+    memset(f,0,sizeof(f));
+    memset(w,0,sizeof(w));
+    memset(d,0,sizeof(d));
+    cin>>n>>m>>s;
+    f1(i,n) a[i].clear();
+    f1(i,n) d[i]=2e18;
+    f1(i,m)
+    {
+        int u,v;ll c;
+        cin>>u>>v>>c;
+        a[u].pb({v,c});
+        a[v].pb({u,c});
+    }
+    priority_queue<pll,vector<pll>,greater<pll>>q;
+    d[s]=0;
+    q.push({0,s});
+    while(q.size())
+    {
+        pll t=q.top();
+        q.pop();
+        if(f[t.se]) continue;
+        f[t.se]=1;
+        for(auto i:a[t.se])
+        {
+            ll x=i.fi,y=i.se;
+            if(d[x]>d[t.se]+y)
+            {
+                d[x]=d[t.se]+y;
+                q.push({d[x],x});
+            }
+        }
+    }
+    f1(i,n) cout<<d[i]<<' ';
+    el;
+}
+int main()
+{
+  ios::sync_with_stdio(false);cin.tie(0);cout.tie(0);
+  int t=1;
+  cin>>t;
+  while(t--) xuly();
+  return 0;
+}
+//-----YEU CODE HON CRUSH-----//
